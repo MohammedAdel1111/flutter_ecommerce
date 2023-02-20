@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/const/AppColors.dart';
 import 'package:flutter_ecommerce/ui/bottom_nav_controller.dart';
+import 'package:flutter_ecommerce/ui/registration_screen.dart';
+import 'package:flutter_ecommerce/widgets/custom_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -10,7 +12,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -18,31 +20,31 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-  // signIn() async {
-  //   try {
-  //     UserCredential userCredential =
-  //         await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: _emailController,
-  //       password: _passwordController,
-  //     );
-  //     var authCredential = userCredential.user;
-  //     print(authCredential!.uid);
-  //     if (authCredential.uid.isNotEmpty) {
-  //       Navigator.push(
-  //           context, CupertinoPageRoute(builder: (_) => BottomNavController()));
-  //     } else {
-  //       Fluttertoast.showToast(msg: 'Something is wrong');
-  //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'user-not-found') {
-  //       Fluttertoast.showToast(msg: 'No user found for that email.');
-  //     } else if (e.code == 'wrong-password') {
-  //       Fluttertoast.showToast(msg: 'wrong password provided for that user.');
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+  signIn() async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.toString(),
+        password: _passwordController.toString(),
+      );
+      var authCredential = userCredential.user;
+      print(authCredential!.uid);
+      if (authCredential.uid.isNotEmpty) {
+        Navigator.push(
+            context, CupertinoPageRoute(builder: (_) => BottomNavController()));
+      } else {
+        Fluttertoast.showToast(msg: 'Something is wrong');
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(msg: 'No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(msg: 'wrong password provided for that user.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +207,42 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         SizedBox(height: 50.h),
-                        custom
+                        customButton(
+                          'Sign In',
+                          () {
+                            signIn();
+                          },
+                        ),
+                        SizedBox(height: 20.h),
+                        Wrap(
+                          children: [
+                            Text(
+                              "Don't have an account?",
+                              style: TextStyle(
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xffbbbbbb),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) =>
+                                            RagistrationScreen()));
+                              },
+                              child: Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.deep_orange,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
