@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/const/AppColors.dart';
 import 'package:flutter_ecommerce/ui/bottom_nav_controller.dart';
+import 'package:flutter_ecommerce/ui/home_screen.dart';
 import 'package:flutter_ecommerce/ui/registration_screen.dart';
 import 'package:flutter_ecommerce/widgets/custom_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,14 +25,14 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.toString(),
-        password: _passwordController.toString(),
+        email: _emailController.text.toString(),
+        password: _passwordController.text.toString(),
       );
       var authCredential = userCredential.user;
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
         Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => BottomNavController()));
+            context, CupertinoPageRoute(builder: (_) => HomeScreen()));
       } else {
         Fluttertoast.showToast(msg: 'Something is wrong');
       }

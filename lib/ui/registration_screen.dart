@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/const/AppColors.dart';
 import 'package:flutter_ecommerce/ui/bottom_nav_controller.dart';
+import 'package:flutter_ecommerce/ui/login_screen.dart';
 import 'package:flutter_ecommerce/ui/user_form.dart';
 import 'package:flutter_ecommerce/widgets/custom_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -208,7 +209,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                         ),
                         SizedBox(height: 50.h),
                         customButton(
-                          'Sign Up',
+                          'Continue',
                           () {
                             signUp();
                           },
@@ -229,11 +230,10 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                 Navigator.push(
                                     context,
                                     CupertinoPageRoute(
-                                        builder: (context) =>
-                                            RagistrationScreen()));
+                                        builder: (context) => LoginScreen()));
                               },
                               child: Text(
-                                'Sign Up',
+                                'Sign In',
                                 style: TextStyle(
                                   fontSize: 13.sp,
                                   fontWeight: FontWeight.w600,
