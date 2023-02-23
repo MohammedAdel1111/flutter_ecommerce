@@ -8,6 +8,7 @@ class BottomNavController extends StatefulWidget {
 }
 
 class _BottomNavControllerState extends State<BottomNavController> {
+  final _pages = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold();
