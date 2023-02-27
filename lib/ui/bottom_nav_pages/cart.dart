@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/widgets/fetch_products.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class Cart extends StatefulWidget {
+  const Cart({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<Cart> createState() => _CartState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

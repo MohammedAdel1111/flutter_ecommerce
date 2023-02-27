@@ -38,7 +38,7 @@ class _UserFormState extends State<UserForm> {
     var currentUser = _auth.currentUser;
 
     CollectionReference _collectionRef =
-        FirebaseFirestore.instance.collection("users-form-data");
+        FirebaseFirestore.instance.collection("user-form-data");
     return _collectionRef
         .doc(currentUser!.email)
         .set({
@@ -122,7 +122,9 @@ class _UserFormState extends State<UserForm> {
                 myTextField(
                     'enter your age', TextInputType.number, _ageController),
                 SizedBox(height: 50.h),
-                customButton("Continue", () => sendUserDataToDB()),
+                customButton("Continue", () {
+                  sendUserDataToDB();
+                }),
               ],
             ),
           ),
